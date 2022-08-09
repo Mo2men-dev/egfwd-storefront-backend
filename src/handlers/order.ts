@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { Order, OrderStore } from '../models/order';
+import { NewOrder, OrderStore } from '../models/order';
 import { verifyTokens } from '../middleware/jwtTokens';
 
 const orderStore = new OrderStore();
@@ -16,15 +16,19 @@ const userOrders = async (req: Request, res: Response) => {
 };
 
 const create = async (req: Request, res: Response) => {
-  const order: Order = {
-    product_id: req.body.product_id,
-    quantity: req.body.quantity,
-    user_id: req.body.user_id,
-    status: req.body.status
+  const newOrder: NewOrder = {
+    order: {
+      user_id: req.body.user_id,
+      status: req.body.status
+    },
+    product: {
+      product_id: req.body.product_id,
+      quantity: req.body.quantity
+    }
   };
   try {
-    const newOrder = await orderStore.create(order);
-    res.status(201).json(newOrder);
+    const orderedProduct = await orderStore.create(newOrder);
+    res.status(201).json(orderedProduct);
   } catch (error) {
     res.status(500).json({ error });
   }
@@ -42,9 +46,9 @@ const completeOrdersByUser = async (req: Request, res: Response) => {
 };
 
 const orders = (app: express.Application) => {
-  app.get('/orders/:userId', verifyTokens, userOrders);
+  app.get('/orders/user/:userId', verifyTokens, userOrders);
   app.post('/orders/add', verifyTokens, create);
-  app.get('/orders/complete/:userId', verifyTokens, completeOrdersByUser);
+  app.get('/orders/complete/user/:userId', verifyTokens, completeOrdersByUser);
 };
 
 export default orders;

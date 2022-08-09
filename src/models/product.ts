@@ -57,7 +57,7 @@ export class ProductStore {
     try {
       const connection = await client.connect();
       const query =
-        'SELECT products.*,SUM(quantity) AS quantity FROM products INNER JOIN orders ON products.id = orders.product_id GROUP BY products.id ORDER BY quantity DESC LIMIT 5';
+        'SELECT products.*,SUM(quantity) AS quantity FROM products INNER JOIN order_products ON products.id = order_products.product_id GROUP BY products.id ORDER BY quantity DESC LIMIT 5';
       const result = await client.query(query);
 
       if (result.rows.length === 0) {

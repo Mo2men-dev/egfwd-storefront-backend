@@ -9,7 +9,8 @@ export const databaseBeforeAll = async (): Promise<void> => {
 };
 
 export const databaseAfterAll = async (): Promise<void> => {
-  const query = 'TRUNCATE TABLE users, products, orders RESTART IDENTITY;';
+  const query =
+    'TRUNCATE TABLE users, products, orders, order_products RESTART IDENTITY;';
   const connection = await client.connect();
   await connection.query(query);
   connection.release();

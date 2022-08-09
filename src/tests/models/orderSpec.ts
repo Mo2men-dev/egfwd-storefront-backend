@@ -1,4 +1,4 @@
-import { Order, OrderStore } from '../../models/order';
+import { OrderStore, NewOrder } from '../../models/order';
 
 const orderStore = new OrderStore();
 
@@ -24,11 +24,15 @@ describe('Order model', (): void => {
     });
 
     it('should add an order to the database and return it', async (): Promise<void> => {
-      const order: Order = {
-        product_id: 1,
-        quantity: 1,
-        user_id: 1,
-        status: 'active'
+      const order: NewOrder = {
+        order: {
+          user_id: 1,
+          status: 'active'
+        },
+        product: {
+          product_id: 1,
+          quantity: 1
+        }
       };
       const result = await orderStore.create(order);
       expect(result).toBeInstanceOf(Object);

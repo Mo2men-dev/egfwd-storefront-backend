@@ -1,4 +1,3 @@
-import { Order } from '../../models/order';
 import supertest from 'supertest';
 import app from '../../..';
 import { databaseBeforeAll } from '../DatabaseHandler';
@@ -7,7 +6,7 @@ const request = supertest(app);
 
 describe('Order Route', (): void => {
   it('should return all orders for a user', async (): Promise<void> => {
-    const response = await request.get('/orders/1').set({
+    const response = await request.get('/orders/user/1').set({
       authorization: process.env.TEST_TOKEN
     });
     expect(response.status).toBe(200);
@@ -15,11 +14,11 @@ describe('Order Route', (): void => {
   });
 
   it('should add an order to the database and return it', async (): Promise<void> => {
-    const order: Order = {
-      product_id: 1,
-      quantity: 1,
+    const order = {
       user_id: 1,
-      status: 'active'
+      status: 'active',
+      product_id: 1,
+      quantity: 1
     };
     const response = await request
       .post('/orders/add')
@@ -33,7 +32,7 @@ describe('Order Route', (): void => {
   });
 
   it('should return an array of complete orders based on the user id', async (): Promise<void> => {
-    const response = await request.get('/orders/complete/1').set({
+    const response = await request.get('/orders/complete/user/1').set({
       authorization: process.env.TEST_TOKEN
     });
     expect(response.status).toBe(200);

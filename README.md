@@ -5,8 +5,7 @@ This is a simple API for an online store made with [Express](https://expressjs.c
 
 >Check out the REQUIREMENTS.md for the API docs.
 
-
-##  Dependencies
+## Dependencies
 
 - [express](https://expressjs.com/)
 - [bcrypt](https://www.npmjs.com/package/bcrypt)
@@ -21,22 +20,23 @@ This is a simple API for an online store made with [Express](https://expressjs.c
 - [cors](https://www.npmjs.com/package/cors)
 - [supertest](https://www.npmjs.com/package/supertest)
 
-##  Scripts
+## Scripts
 
-- `npm run build` : build the project for production
-- `npm run dev` : start the project in development mode
-- `npm run test` : run the tests
-- `npm run lint` : run the linter
-- `npm run start` : start the project in production mode
-- `npm run prettier` : run the prettier formatter
+-  `npm run build` : build the project for production
+-  `npm run dev` : start the project in development mode
+-  `npm run test` : run the tests
+-  `npm run lint` : run the linter
+-  `npm run start` : start the project in production mode
+-  `npm run prettier` : run the prettier formatter
 
 ## Database
-1. connect to the postgres database, with your user name replace `*` with your user name. ` psql -U **** `
 
+1. connect to the postgres database, with your user name replace `*` with your user name. ` psql -U **** `
 2. create `storefront_dev` and `storefront_test` databases:
 ```
 CREATE DATABASE storefront_dev; CREATE DATABASE storefront_test;
 ```
+
 ## .env File
 create a `.env` file in the root directory and replace `*` with your data.
 
@@ -52,6 +52,7 @@ SALT=speak-to-the-elder-one
 TOKEN_SECRET=replace-this-if-you-want
 TEST_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0LCJmaXJzdG5hbWUiOiJNb21lbiIsImxhc3RuYW1lIjoiU2FtZWgiLCJwYXNzd29yZCI6IiQyYiQxMCRJa0l3SC9icVU4dHlUM2JxUU9VQjFPWHU5STB5djZ4ZU1HdUxUNnRVNzhTdUplM0dCUFNVVyJ9LCJpYXQiOjE2NTk5NTQ2ODZ9.C55B6tskkqV8_mVbLlzDAyuEXXzeqnVwPeMWQ-aFTqU
 ```
+
 ## Run the server
 1. Install dependencies `npm install`
 2. Migrate the database `db-migrate up`

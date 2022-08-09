@@ -36,6 +36,7 @@ This is a simple API for an online store made with [Express](https://expressjs.c
 ```
 CREATE DATABASE storefront_dev; CREATE DATABASE storefront_test;
 ```
+> Database will be running on port: 5432
 
 ## .env File
 create a `.env` file in the root directory and replace `*` with your data.

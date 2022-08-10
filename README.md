@@ -51,6 +51,7 @@ POSTGRES_PASSWORD=******
 SALT_ROUNDS=10
 SALT=speak-to-the-elder-one
 TOKEN_SECRET=replace-this-if-you-want
+```
 
 ## Run the server
 1. Install dependencies `npm install`

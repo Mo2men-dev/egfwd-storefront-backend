@@ -16,10 +16,17 @@ describe('Product Route', (): void => {
       price: 1,
       category: 'Category'
     };
+    const user = {
+      firstName: 'testUser1',
+      lastName: 'testUserLast1',
+      password: 'testUserPass1'
+    };
+
+    const token = await request.post('/users/sign-in').send(user);
     const response = await request
       .post('/products/add')
       .set({
-        authorization: process.env.TEST_TOKEN
+        authorization: token.body.token
       })
       .send(product);
 
@@ -40,7 +47,7 @@ describe('Product Route', (): void => {
   });
 
   it('should return all products in a category', async (): Promise<void> => {
-    const response = await request.get('/products/category/Category');
+    const response = await request.get('/products/category/fruits');
     expect(response.status).toBe(200);
     expect(response.body).toBeInstanceOf(Array);
   });

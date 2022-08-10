@@ -6,8 +6,16 @@ const request = supertest(app);
 
 describe('Order Route', (): void => {
   it('should return all orders for a user', async (): Promise<void> => {
+    const user = {
+      firstName: 'testUser1',
+      lastName: 'testUserLast1',
+      password: 'testUserPass1'
+    };
+
+    const token = await request.post('/users/sign-in').send(user);
+    console.log('*****test token*****', token.body);
     const response = await request.get('/orders/user/1').set({
-      authorization: process.env.TEST_TOKEN
+      authorization: token.body.token
     });
     expect(response.status).toBe(200);
     expect(response.body).toBeInstanceOf(Array);
@@ -20,10 +28,17 @@ describe('Order Route', (): void => {
       product_id: 1,
       quantity: 1
     };
+    const user = {
+      firstName: 'testUser1',
+      lastName: 'testUserLast1',
+      password: 'testUserPass1'
+    };
+
+    const token = await request.post('/users/sign-in').send(user);
     const response = await request
       .post('/orders/add')
       .set({
-        authorization: process.env.TEST_TOKEN
+        authorization: token.body.token
       })
       .send(order);
 
@@ -32,8 +47,15 @@ describe('Order Route', (): void => {
   });
 
   it('should return an array of complete orders based on the user id', async (): Promise<void> => {
+    const user = {
+      firstName: 'testUser1',
+      lastName: 'testUserLast1',
+      password: 'testUserPass1'
+    };
+
+    const token = await request.post('/users/sign-in').send(user);
     const response = await request.get('/orders/complete/user/1').set({
-      authorization: process.env.TEST_TOKEN
+      authorization: token.body.token
     });
     expect(response.status).toBe(200);
     expect(response.body).toBeInstanceOf(Array);

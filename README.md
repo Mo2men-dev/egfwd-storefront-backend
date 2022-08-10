@@ -51,8 +51,6 @@ POSTGRES_PASSWORD=******
 SALT_ROUNDS=10
 SALT=speak-to-the-elder-one
 TOKEN_SECRET=replace-this-if-you-want
-TEST_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0LCJmaXJzdG5hbWUiOiJNb21lbiIsImxhc3RuYW1lIjoiU2FtZWgiLCJwYXNzd29yZCI6IiQyYiQxMCRJa0l3SC9icVU4dHlUM2JxUU9VQjFPWHU5STB5djZ4ZU1HdUxUNnRVNzhTdUplM0dCUFNVVyJ9LCJpYXQiOjE2NTk5NTQ2ODZ9.C55B6tskkqV8_mVbLlzDAyuEXXzeqnVwPeMWQ-aFTqU
-```
 
 ## Run the server
 1. Install dependencies `npm install`
